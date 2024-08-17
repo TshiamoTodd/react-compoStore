@@ -1,14 +1,22 @@
 'use server'
 
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
-export async function connect(): Promise<void> {
-    try {
-        await mongoose.connect(process.env.MONGODB_URL as string)
-        console.log('Connected to the database')
-    } catch (error) {
-        console.log(error)
-    }
-}
+const MONGODB_URL = process.env.MONGODB_URL;
 
-export default connect
+let cached = (global as any).mongoose || {conn: null, promise: null};
+
+export const connect = async () => {
+  if (cached.conn) return cached.conn;
+
+  if(!MONGODB_URL) throw new Error('MongoDB URI is missing');
+
+  cached.promise = cached.promise || mongoose.connect(MONGODB_URL, {
+    dbName: 'react-compo-store',
+    bufferCommands: false,
+  });
+
+  cached.conn = await cached.promise;
+
+  return cached.conn;
+};
