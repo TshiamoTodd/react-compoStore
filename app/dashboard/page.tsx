@@ -1,8 +1,13 @@
 import React from 'react'
+import Sidebar from './Sidebar'
+import ContentArea from './ContentArea'
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div className='flex w-screen h-screen'>
+      <Sidebar/>
+      <ContentArea/>
+    </div>
   )
 }
 
