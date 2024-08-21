@@ -9,12 +9,12 @@ import { useAppContext } from '../ContextAPI'
 const Sidebar = () => {
     const { openSidebarObject: {openSideBar} } = useAppContext()
     return (
-            <div className={`${openSideBar ? "w-[310px] p-6": "w-[100px] p-4"} h-screen pt-12 relative transition-all duration-300`}>
-                <RoundedArrowIcon />
-                <Logo/>
-                <Links/>
-                <LogOutButton/>
-            </div>
+        <div className={`${openSideBar ? "w-[310px] p-6": "w-[100px] p-4"} h-screen pt-12 relative transition-all duration-300`}>
+            <RoundedArrowIcon />
+            <Logo/>
+            <Links/>
+            <LogOutButton/>
+        </div>
     )
 }
 

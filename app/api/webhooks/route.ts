@@ -61,10 +61,7 @@ export async function POST(req: Request) {
         clerkUserId: id,
         emailAddress: email_addresses[0].email_address,
     };
-
-    console.log("Connect to DB")
     try {
-        console.log({newUser})
         await connect()
         await User.create(newUser)
         console.log("user created")
